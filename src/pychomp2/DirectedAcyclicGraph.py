@@ -1,10 +1,13 @@
 ### DirectedAcyclicGraph.py
 ### MIT LICENSE 2016 Shaun Harker
+#
+# Marcio Gameiro
+# 2021-03-24
 
 import subprocess, copy, json, graphviz, sys
 from collections import defaultdict
 
-from pychomp.TopologicalSort import *
+from pychomp2.TopologicalSort import *
 
 # TODO: don't silently fail if given a non-DAG
 

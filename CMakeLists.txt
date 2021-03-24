@@ -1,17 +1,27 @@
-cmake_minimum_required(VERSION 2.8.12)
-project(CHomP)
+cmake_minimum_required(VERSION 3.12)
+
+project(pyCHomP2)
+
+cmake_policy(SET CMP0054 NEW)
+
+# Visual Studio C++ does not support keywords such
+# as "and", "not", etc. Settting the /permissive-
+# flag for the compiler makes it suppor them.
+if(MSVC)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /permissive-")
+endif()
 
 add_subdirectory(pybind11)
 
-include_directories ( 
+include_directories (
   ${CMAKE_SOURCE_DIR}/include
-  /usr/local/include 
+  /usr/local/include
   ${USER_INCLUDE_PATH} )
 
-link_directories ( 
-  ${USER_LIBRARY_PATH} 
+link_directories (
+  ${USER_LIBRARY_PATH}
   /usr/local/lib )
 
 message("USER INCLUDE PATH IS ${USER_INCLUDE_PATH}")
 
-pybind11_add_module(_chomp src/pychomp/_chomp/chomp.cpp)
+pybind11_add_module(_chomp src/pychomp2/_chomp/chomp.cpp)

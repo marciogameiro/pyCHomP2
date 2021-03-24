@@ -2,9 +2,12 @@
 # Shaun Harker
 # MIT LICENSE
 # 2018-03-12
+#
+# Marcio Gameiro
+# 2021-03-24
 
-from pychomp.DirectedAcyclicGraph import *
-from pychomp.Poset import *
+from pychomp2.DirectedAcyclicGraph import *
+from pychomp2.Poset import *
 
 def InducedSubgraph( G, predicate ):
     result = DirectedAcyclicGraph()

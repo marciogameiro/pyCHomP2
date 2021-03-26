@@ -16,7 +16,7 @@ on:
 jobs:
   # Build wheels for macOS, Linux, and Windows
   build_wheels:
-    name: Build wheel for ${{ matrix.os }}-cp${{ matrix.python }}
+    name: Wheel for ${{ matrix.os }}-cp${{ matrix.python }}-${{ matrix.bitness }}-bits
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -25,6 +25,28 @@ jobs:
       matrix:
         os: [windows-latest, ubuntu-latest, macos-latest]
         python: [36, 37, 38, 39]
+        bitness: [32, 64]
+        include:
+          # Run all in parallel
+          - os: windows-latest
+            bitness: 64
+            platform_id: win_amd64
+          - os: windows-latest
+            bitness: 32
+            platform_id: win32
+          - os: ubuntu-latest
+            bitness: 64
+            platform_id: manylinux_x86_64
+          - os: ubuntu-latest
+            bitness: 32
+            platform_id: manylinux_i686
+          - os: macos-latest
+            bitness: 64
+            platform_id: macosx_x86_64
+        exclude:
+          # Remove 32-bit MacOS
+          - os: macos-latest
+            bitness: 32
 
     steps:
       - name: Checkout repository and submodules
@@ -42,7 +64,7 @@ jobs:
         run:
           python -m cibuildwheel --output-dir wheelhouse
         env:
-          CIBW_BUILD: cp${{ matrix.python }}-*
+          CIBW_BUILD: cp${{ matrix.python }}-${{ matrix.platform_id }}
 
       - name: Show files
         run: ls -lh wheelhouse
@@ -109,9 +131,9 @@ jobs:
         repository_url: https://test.pypi.org/legacy/
       if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
 
-    # - name: Publish package to PyPI
-    #   uses: pypa/gh-action-pypi-publish@v1.4.1
-    #   with:
-    #     user: __token__
-    #     password: ${{ secrets.PYPI_TOKEN }}
-    #   if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
+    - name: Publish package to PyPI
+      uses: pypa/gh-action-pypi-publish@v1.4.1
+      with:
+        user: __token__
+        password: ${{ secrets.PYPI_TOKEN }}
+      if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')

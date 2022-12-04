@@ -2,7 +2,7 @@
 ### MIT LICENSE 2016 Shaun Harker
 #
 # Marcio Gameiro
-# 2021-03-24
+# 2022-12-04
 
 from pychomp2._chomp import *
 #from pychomp2.Braids import *
@@ -16,3 +16,4 @@ from pychomp2.TransitiveClosure import *
 from pychomp2.Poset import *
 from pychomp2.StronglyConnectedComponents import *
 from pychomp2.DrawGradedComplex import *
+from pychomp2.CubicalHomology import *

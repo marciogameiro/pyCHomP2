@@ -87,7 +87,7 @@ with open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 setup(
     # Distribution package name
     name='pychomp2',
-    version='0.6.6',
+    version='1.0.0',
     author='Marcio Gameiro',
     author_email='marciogameiro@gmail.com',
     description='CHomP (Computational Homology Project) Python Extension',

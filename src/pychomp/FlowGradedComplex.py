@@ -4,11 +4,11 @@
 # Marcio Gameiro
 # 2021-03-24
 
-from pychomp2._chomp import *
-from pychomp2.CondensationGraph import *
-from pychomp2.StronglyConnectedComponents import *
-from pychomp2.DirectedAcyclicGraph import *
-from pychomp2.Poset import *
+from pychomp._chomp import *
+from pychomp.CondensationGraph import *
+from pychomp.StronglyConnectedComponents import *
+from pychomp.DirectedAcyclicGraph import *
+from pychomp.Poset import *
 
 def FlowGradedComplex(complex, discrete_flow):
   """

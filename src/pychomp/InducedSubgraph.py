@@ -6,8 +6,8 @@
 # Marcio Gameiro
 # 2021-03-24
 
-from pychomp2.DirectedAcyclicGraph import *
-from pychomp2.Poset import *
+from pychomp.DirectedAcyclicGraph import *
+from pychomp.Poset import *
 
 def InducedSubgraph( G, predicate ):
     result = DirectedAcyclicGraph()

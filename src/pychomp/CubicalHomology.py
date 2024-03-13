@@ -1,7 +1,7 @@
 # CubicalHomology.py
 # MIT LICENSE 2022 Marcio Gameiro
 
-from pychomp2._chomp import *
+from pychomp._chomp import *
 
 def CubicalHomology(cubes):
     """Compute homology of a collection (list) of top dimensional

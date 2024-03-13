@@ -1,4 +1,4 @@
-# TransitiveReduction.py
+# TransitiveClosure.py
 # Shaun Harker
 # MIT LICENSE
 # 2018-03-10
@@ -6,10 +6,10 @@
 # Marcio Gameiro
 # 2021-03-24
 
-from pychomp2.DirectedAcyclicGraph import *
-from pychomp2.TopologicalSort import *
+from pychomp.DirectedAcyclicGraph import *
+from pychomp.TopologicalSort import *
 
-def TransitiveReduction( G ):
+def TransitiveClosure( G ):
     """ Return a new graph which is the transitive reduction of a DAG G """
     # Algorithm. Compute longest-path distance between each pair of vertices. 
     # Then, construct a graph consisting length-one longest paths.
@@ -18,16 +18,14 @@ def TransitiveReduction( G ):
     for v in G.vertices():
         result.add_vertex(v)    
     for v in G.vertices():
-        # Find single-source longest paths from v
-        lp = { u : -1 for u in G.vertices() }
-        lp[v] = 0
+        # Find vertices reachable from from v
+        reachable = set()
+        reachable.add(v)
         for u in reversed(TS):
-            val = lp[u]
-            if val >= 0:
+            if u in reachable:
                 for w in G.adjacencies(u):
-                    if u != w:
-                        lp[w] = max(val + 1, lp[w])
-        for u in [ w for w in lp if lp[w] == 1 ]:
-            result.add_edge(v, u)
+                    reachable.add(w)
+        for u in reachable:
+            if u != v:
+                result.add_edge(v, u)
     return result
-

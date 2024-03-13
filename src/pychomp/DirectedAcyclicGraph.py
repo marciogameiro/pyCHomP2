@@ -7,7 +7,7 @@
 import subprocess, copy, json, graphviz, sys
 from collections import defaultdict
 
-from pychomp2.TopologicalSort import *
+from pychomp.TopologicalSort import *
 
 # TODO: don't silently fail if given a non-DAG
 

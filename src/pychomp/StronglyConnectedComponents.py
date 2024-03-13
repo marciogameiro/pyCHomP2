@@ -72,4 +72,3 @@ def StronglyConnectedComponents(vertices_input, adjacencies_input):
     #Return result
     # Convert results to lists of vertices as originally given
     return [ [ vertices[v-1] for v in component ] for component in result ]
-

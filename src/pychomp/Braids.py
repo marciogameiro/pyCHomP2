@@ -4,7 +4,7 @@
 # Marcio Gameiro
 # 2021-03-24
 
-from pychomp2._chomp import *
+from pychomp._chomp import *
 
 from collections import defaultdict
 import matplotlib.pyplot as plt

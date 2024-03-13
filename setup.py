@@ -39,7 +39,7 @@ class CMakeBuild(build_ext):
             "-DPYTHON_EXECUTABLE={}".format(sys.executable),
             "-DEXAMPLE_VERSION_INFO={}".format(self.distribution.get_version()),
             "-DCMAKE_BUILD_TYPE={}".format(cfg),  # Not used on MSVC
-            "-DUSER_INCLUDE_PATH=./src/pychomp2/_chomp/include"
+            "-DUSER_INCLUDE_PATH=./src/pychomp/_chomp/include"
         ]
 
         build_args = ['--config', cfg]
@@ -85,6 +85,7 @@ with open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
+    # Distribution package name
     name='pychomp2',
     version='0.6.6',
     author='Marcio Gameiro',
@@ -93,9 +94,9 @@ setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
     package_dir = {'': 'src'},
-    ext_package='pychomp2',
+    ext_package='pychomp',
     ext_modules=[CMakeExtension('_chomp')],
-    packages=['pychomp2'],
+    packages=['pychomp'],
     cmdclass=dict(build_ext=CMakeBuild),
     zip_safe=False,
     url = 'https://github.com/marciogameiro/pyCHomP2',

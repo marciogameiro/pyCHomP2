@@ -2,7 +2,7 @@
 ### MIT LICENSE 2016 Shaun Harker
 #
 # Marcio Gameiro
-# 2021-03-24
+# 2024-03-13
 
 import subprocess, copy, json, graphviz, sys
 from collections import defaultdict
@@ -21,14 +21,14 @@ class DirectedAcyclicGraph:
         self.adjacency_lists_ = {}
         self.vertex_labels_ = {}
         self.edge_labels_ = {}
-    def add_vertex(self, v, label = ''):
+    def add_vertex(self, v, label=''):
         """ Add the vertex v to the graph and associate a label if one is given """
         if v in self.vertices_: return
         self.vertices_.add(v)
-        self.adjacency_lists_[v] = set ()
+        self.adjacency_lists_[v] = set()
         self.vertex_labels_[v] = label
         self.edge_labels_[v] = {}
-    def add_edge(self, u, v, label = ''):
+    def add_edge(self, u, v, label=''):
         """ Add the edge u -> v to the graph and associate a label if one is given """
         #print("Adding DAG edge (" + str(u) + ", " + str(v) + ")")
         self.add_vertex(u)
@@ -44,7 +44,7 @@ class DirectedAcyclicGraph:
         return self.vertex_labels_[v]
     def get_vertex_from_label(self, label):
         """ Return the vertex v with label 'label'. Error if non-unique. """
-        vertices = [ v for v in self.vertices_ if self.vertex_label(v) == label ]
+        vertices = [v for v in self.vertices_ if self.vertex_label(v) == label]
         N = len(vertices)
         if N == 1:
             return vertices[0]
@@ -88,7 +88,7 @@ class DirectedAcyclicGraph:
         TS = TopologicalSort(self.vertices(), self.adjacencies)
         result = DirectedAcyclicGraph()
         for v in self.vertices():
-            result.add_vertex(v)    
+            result.add_vertex(v, label=self.vertex_label(v))    
         for v in self.vertices():
             # Find vertices reachable from from v
             reachable = set()
@@ -99,7 +99,7 @@ class DirectedAcyclicGraph:
                         reachable.add(w)
             for u in reachable:
                 if u != v:
-                    result.add_edge(v, u)
+                    result.add_edge(v, u, label=self.edge_label(v, u))
         return result
         # """ Return a new graph which is the transitive closure """
         # G = self.clone ()
@@ -115,7 +115,7 @@ class DirectedAcyclicGraph:
         TS = TopologicalSort(self.vertices(), self.adjacencies)
         result = DirectedAcyclicGraph()
         for v in self.vertices():
-            result.add_vertex(v)    
+            result.add_vertex(v, label=self.vertex_label(v))    
         for v in self.vertices():
             # Find single-source longest paths from v
             lp = { u : -1 for u in self.vertices() }
@@ -127,7 +127,7 @@ class DirectedAcyclicGraph:
                         if u != w:
                             lp[w] = max(val + 1, lp[w])
             for u in [ w for w in lp if lp[w] == 1 ]:
-                result.add_edge(v, u)
+                result.add_edge(v, u, label=self.edge_label(v, u))
         return result
 
         # TC = self.transitive_closure ()

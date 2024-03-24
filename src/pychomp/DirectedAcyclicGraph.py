@@ -2,7 +2,7 @@
 ### MIT LICENSE 2016 Shaun Harker
 #
 # Marcio Gameiro
-# 2024-03-13
+# 2024-03-24
 
 import subprocess, copy, json, graphviz, sys
 from collections import defaultdict
@@ -99,7 +99,11 @@ class DirectedAcyclicGraph:
                         reachable.add(w)
             for u in reachable:
                 if u != v:
-                    result.add_edge(v, u, label=self.edge_label(v, u))
+                    try:
+                        label = self.edge_label(v, u)
+                    except:
+                        label = ''
+                    result.add_edge(v, u, label=label)
         return result
         # """ Return a new graph which is the transitive closure """
         # G = self.clone ()

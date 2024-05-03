@@ -17,3 +17,4 @@ from pychomp.Poset import *
 from pychomp.StronglyConnectedComponents import *
 from pychomp.DrawGradedComplex import *
 from pychomp.CubicalHomology import *
+from pychomp.DirectedGraph import *

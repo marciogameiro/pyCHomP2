@@ -1,5 +1,8 @@
 # CubicalHomology.py
 # MIT LICENSE 2022 Marcio Gameiro
+#
+# Marcio Gameiro
+# 2024-05-23
 
 from pychomp._chomp import *
 
@@ -10,7 +13,7 @@ def CubicalHomology(cubes):
     """
     # Space dimension
     dim = len(cubes[0])
-    # Get grid size form the list of cubes
+    # Get grid size from the list of cubes
     grid_size = [max(cubes, key=lambda c: c[d])[d] + 1 for d in range(dim)]
     # Extended grid size for pyCHomP complex (to account for fringe cells)
     grid_size_ext = [grid_size[d] + 2 for d in range(dim)]
@@ -18,8 +21,8 @@ def CubicalHomology(cubes):
     C = CubicalComplex(grid_size_ext)
     # Shape of top dimensional cells
     shape = 2**dim - 1
-    # Get cells indices in the complex
-    cells_indices = [C.cell_index(cube, shape) for cube in cubes]
+    # Get set of cells indices in the complex
+    cells_indices = {C.cell_index(cube, shape) for cube in cubes}
     # Assign grading 0 to cells in the list of cubes
     def grading(cell):
         if any(c in cells_indices for c in C.topstar(cell)):

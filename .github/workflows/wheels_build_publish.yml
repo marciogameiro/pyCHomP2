@@ -66,6 +66,7 @@ jobs:
           # Skip PyPy 3.7 and 3.8 on Linux
           # Skip CPython 3.6 and 3.7 on 32-bit Windows
           CIBW_SKIP: cp36-win32 cp37-win32 pp37-manylinux* pp38-manylinux*
+          CIBW_ENABLE: pypy
           CIBW_BUILD: ${{ matrix.cibw_build }}
           CIBW_ARCHS: ${{ matrix.cibw_archs }}
           CIBW_BEFORE_BUILD_WINDOWS: pip install delvewheel

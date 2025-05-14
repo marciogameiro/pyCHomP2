@@ -61,7 +61,7 @@ jobs:
           python-version: '3.x'
 
       - name: Build wheels
-        uses: pypa/cibuildwheel@v2.23.3
+        uses: pypa/cibuildwheel@v2.23.2
         env:
           # Skip PyPy 3.7 and 3.8 on Linux
           # Skip CPython 3.6 and 3.7 on 32-bit Windows

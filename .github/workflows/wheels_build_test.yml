@@ -34,8 +34,8 @@ jobs:
         # exclude:
         #   - buildplat: [macos-latest, arm64]
         #     python: 'pp*'
-        #   - buildplat: [windows-latest, x86]
-        #     python: 'pp*'
+          - buildplat: [windows-latest, x86]
+            python: 'pp*'
 
     steps:
       - name: Set up QEMU

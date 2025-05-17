@@ -30,7 +30,7 @@ jobs:
           - [macos-latest, arm64]
           - [windows-latest, AMD64]
           - [windows-latest, x86]
-        python: ['cp3{9,10,11,12,13}-*', 'pp3{9,10,11}-*']
+        python: ['cp39', 'cp310', 'cp311', 'cp312', 'cp313', 'pp39', 'pp310', 'pp311']
         # exclude:
         #   - buildplat: [macos-latest, arm64]
         #     python: 'pp*'

@@ -30,12 +30,12 @@ jobs:
           - [macos-latest, arm64]
           - [windows-latest, AMD64]
           - [windows-latest, x86]
-        python: ['cp310', 'pp39']
-        exclude:
-          - buildplat: [macos-latest, arm64]
-            python: 'pp39'
-          - buildplat: [windows-latest, x86]
-            python: 'pp39'
+        python: ['cp3{9,10,11,12,13}-*', 'pp3{9,10,11}-*']
+        # exclude:
+        #   - buildplat: [macos-latest, arm64]
+        #     python: 'pp*'
+        #   - buildplat: [windows-latest, x86]
+        #     python: 'pp*'
 
     steps:
       - name: Set up QEMU

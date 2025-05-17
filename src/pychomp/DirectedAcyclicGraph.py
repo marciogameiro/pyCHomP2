@@ -4,8 +4,8 @@
 # Marcio Gameiro
 # 2024-03-24
 
-import subprocess, copy, json, graphviz, sys
-from collections import defaultdict
+import graphviz
+import copy
 
 from pychomp.TopologicalSort import *
 

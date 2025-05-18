@@ -29,5 +29,5 @@ pip install . --force-reinstall --no-deps --no-cache-dir
 Or install directly from `GitHub`:
 
 ```bash
-pip install --force-reinstall --no-deps --no-cache-dir git+https://github.com/marciogameiro/DSGRN.git
+pip install --force-reinstall --no-deps --no-cache-dir git+https://github.com/marciogameiro/pyCHomP2.git
 ```

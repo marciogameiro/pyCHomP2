@@ -23,11 +23,11 @@ The recommended way to install `pyCHomP2` is using `pip` as above. To get the bl
 ```bash
 git clone https://github.com/marciogameiro/pyCHomP2.git
 cd pyCHomP2
-pip install . --ignore-installed --no-cache-dir
+pip install . --force-reinstall --no-deps --no-cache-dir
 ```
 
 Or install directly from `GitHub`:
 
 ```bash
-pip install --ignore-installed --no-cache-dir git+https://github.com/marciogameiro/DSGRN.git
+pip install --force-reinstall --no-deps --no-cache-dir git+https://github.com/marciogameiro/DSGRN.git
 ```

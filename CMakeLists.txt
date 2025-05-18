@@ -1,8 +1,8 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.15...3.26)
 
-project(pyCHomP2)
+project(${SKBUILD_PROJECT_NAME} VERSION ${SKBUILD_PROJECT_VERSION} LANGUAGES CXX)
 
-cmake_policy(SET CMP0054 NEW)
+# cmake_policy(SET CMP0054 NEW)
 
 # Visual Studio C++ does not support keywords such
 # as "and", "not", etc. Settting the /permissive-
@@ -11,17 +11,27 @@ if(MSVC)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /permissive-")
 endif()
 
-add_subdirectory(pybind11)
+set(PYBIND11_FINDPYTHON ON)
 
-include_directories (
-  ${CMAKE_SOURCE_DIR}/include
-  /usr/local/include
-  ${USER_INCLUDE_PATH} )
+find_package(pybind11 CONFIG REQUIRED)
 
-link_directories (
-  ${USER_LIBRARY_PATH}
-  /usr/local/lib )
+# With the settings above pybind11 will find Python
+# find_package(Python COMPONENTS Interpreter Development.Module REQUIRED)
 
-message("USER INCLUDE PATH IS ${USER_INCLUDE_PATH}")
+# CMAKE_PROJECT_PATH is set in pyproject.toml
+include_directories(${CMAKE_SOURCE_DIR}/${CMAKE_PROJECT_PATH}/include)
+# include_directories(${CMAKE_SOURCE_DIR}/src/pychomp/_chomp/include)
 
-pybind11_add_module(_chomp src/pychomp/_chomp/chomp.cpp)
+pybind11_add_module(_chomp MODULE ${CMAKE_PROJECT_PATH}/chomp.cpp)
+# pybind11_add_module(_chomp MODULE src/pychomp/_chomp/chomp.cpp)
+
+# Delete this
+# python_add_library(_chomp MODULE src/pychomp/_chomp/chomp.cpp WITH_SOABI)
+# target_link_libraries(_chomp PRIVATE pybind11::headers)
+
+message("USER PROJECT PATH IS ${CMAKE_PROJECT_PATH}")
+message("CMAKE SOURCE DIR IS ${CMAKE_SOURCE_DIR}")
+message("SKBUILD PROJECT NAME IS ${SKBUILD_PROJECT_NAME}")
+
+install(TARGETS _chomp DESTINATION pychomp)
+# install(TARGETS _chomp DESTINATION ${SKBUILD_PROJECT_NAME})

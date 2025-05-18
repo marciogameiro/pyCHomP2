@@ -18,11 +18,16 @@ pip uninstall pychomp2
 
 ## Installing from source
 
-To get the bleeding edge version (i.e., this repo):
+The recommended way to install `pyCHomP2` is using `pip` as above. To get the bleeding edge version (i.e., this repo) install with the commands below. This requires a `C++` compiler.
 
 ```bash
 git clone https://github.com/marciogameiro/pyCHomP2.git
 cd pyCHomP2
-git submodule update --init --recursive
-pip install . --ignore-installed --no-cache-dir -v -v -v --user
+pip install . --ignore-installed --no-cache-dir
+```
+
+Or install directly from `GitHub`:
+
+```bash
+pip install --ignore-installed --no-cache-dir git+https://github.com/marciogameiro/DSGRN.git
 ```

@@ -32,8 +32,8 @@ jobs:
           - [windows-latest, x86]
         python: ['cp39', 'cp310', 'cp311', 'cp312', 'cp313', 'pp39', 'pp310', 'pp311']
         exclude:
-        #   - buildplat: [macos-latest, arm64]
-        #     python: 'pp39'
+          # - buildplat: [macos-latest, arm64]
+          #   python: 'pp39'
           - buildplat: [windows-latest, x86]
             python: 'pp39'
           - buildplat: [windows-latest, x86]
